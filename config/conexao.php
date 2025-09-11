@@ -27,7 +27,11 @@ try{
 }
 
 if($modo == 'producao'){
-
+    /*
+    $servidor = "localhost";
+    $usuario = "usuario do host que tu comprou";
+    $senha = "senha do host que tu comprou";
+    $banco = "login do host que tu comprou";*/
 }
 
 function limparPost($dados){

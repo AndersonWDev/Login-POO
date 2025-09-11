@@ -72,6 +72,7 @@ if(isset($_POST['email']) && isset($_POST['senha']) && !empty($_POST['email']) &
             <img class="input-icon" src="Img/lock.png">
             <input type="password" name="senha" placeholder="Digite sua senha" required>
         </div>
+        <a href="esqueci.php">Esqueceu a senha ?</a>
         <button class="btn-blue" type="submit">Fazer Login</button>
         <a href="cadastrar.php">Ainda não tenho cadastro</a>
     </form>

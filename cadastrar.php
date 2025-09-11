@@ -81,7 +81,7 @@ if(isset($_POST['nome_completo']) && isset($_POST['email']) && isset($_POST['sen
         }
         }
     }
-}
+}}
 
 ?>
 
