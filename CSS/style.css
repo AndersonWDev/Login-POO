@@ -1,0 +1,132 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    width: 100dvw;
+    height: 100dvh;
+    background: #eeeeee;
+    margin: 0;
+    display:flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+form{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    max-width: 400px;
+    padding: 40px 20px 20px;
+    background: white;
+    border-radius: 30px;
+    box-shadow: 0px 0px 20px #bebebe;
+}
+h2{
+    font-size: 2rem;
+    width: 100%;
+    text-align: center;
+    font-weight: 900;
+}
+input{
+    width: 95%;
+    height: 60px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    padding-left: 20%;
+    margin-left: 5%;
+}
+input:focus{
+    outline-color:#00c3ff;
+}
+.btn-blue{
+    width: 85%;
+    padding: 20px;
+    margin: 20px 0px 20px 0px;
+    cursor: pointer;
+    background: #00c3ff;
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 7px;
+    transition: 0.5s ease;
+}
+.btn-blue:hover{
+    background:#047da1;
+}
+a{
+    text-decoration: none;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: black;
+    transition: 0.3s ease;
+}
+a:hover{
+    color: #00c3ff;
+}
+.input-group{
+    width: 90%;
+}
+.input-icon{
+    width: 60px;
+    position: absolute;
+}
+.link{
+    color: #00c3ff;
+    text-decoration: underline;
+}
+input[type='checkbox']{
+display: inline-block;
+height: 20px;
+width: 5%;
+vertical-align: middle;
+}
+label{
+    display: inline-block;
+    width: 85%;
+    font-size: 13px;
+    margin-top: 15px;
+    cursor: pointer;
+    word-wrap: break-word;
+}
+.erro-geral{
+    background: #c82a2a;
+    color: white;
+    padding: 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+.erro-input{
+    border: 1px solid #c82a2a;
+}
+.erro{
+    color: #c82a2a;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 14px;
+}
+.sucesso{
+    background: #2ac874;
+    color: white;
+    padding: 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+.oculto{
+    display: none;
+}
+.lkmail{
+    padding: 20px;
+    border-radius: 7px;
+    background-color: #00c3ff;
+    color: azure;
+}
+.obrigado{
+    text-align: center;
+}
