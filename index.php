@@ -1,44 +1,15 @@
 <?php
-require('config/conexao.php');
-//VALIDAÇÕES
-if(isset($_POST['email']) && isset($_POST['senha']) && !empty($_POST['email']) && !empty($_POST['senha'])){
-    //RECEBER DADOS VINDO DO POST E LIMPAR
-    $email = limparPost($_POST['email']);
-    $senha = limparPost($_POST['senha']);
-    $senha_cript = sha1($senha);
-    //VERIFICAR SE EXISTE NO BANCO
-    $sql = $pdo->prepare("SELECT * FROM `usuários` WHERE email=? AND senha=? LIMIT 1");
-    $sql->execute(array($email,$senha_cript));
-    $usuario = $sql->fetch(PDO::FETCH_ASSOC);
-    
-    //EXISTE O USUÁRIO
-    if($usuario){
-        //VERIFICAR SE O STATUS FOI CONFIRMADO
-        if($usuario['status']=="confirmado"){
-            //CRIAR UM TOKEN
-            $token = bin2hex(random_bytes(32));//Criptografia segura e aconselhável de token
-            //ATUALIZAR TOKEN DO USUÁRIO NO BANCO
-            $sql = $pdo->prepare("UPDATE `usuários` SET token=? WHERE email=? AND senha=?");
-            if($sql->execute(array($token,$email,$senha_cript))){
-                //ARMAZENAR NA SESSÃO
-                $_SESSION['TOKEN'] = $token;
-                header('location: restrito.php');
-                exit;
-            }
-        } else {
-            //USUÁRIO EXISTE MAS NÃO CONFIRMADO
-            $erro_login = "Por favor, confirme o cadastro no seu email!";
-        }
-    } else {
-        //USUÁRIO OU SENHA INCORRETOS
-        $erro_login = "Usuário ou senha incorretos!";
-    }
+require_once('class/config.php');
+require_once('autoload.php');
 
-   
-    
+if(isset($_POST['email']) && isset($_POST['email']) && !empty($_POST['senha'])){
+    $email = limpaPost(($_POST['email']));
+    $senha = limpaPost(($_POST['senha']));
+
+    $login = new Login();
+    $login->auth($email,$senha);
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -51,18 +22,17 @@ if(isset($_POST['email']) && isset($_POST['senha']) && !empty($_POST['email']) &
 <body>
     <form method="post">
         <h2>Login</h2>
-
-        <?php if(isset($_GET['result']) && ($_GET['result']=="ok")){?>        
+        <?php if(isset($_GET["sucesso"]) && $_GET["sucesso"]=="ok"){?>
         <div class="sucesso animate__animated animate__bounce">
         Cadastrado com sucesso
         </div>
-        <?php }?>
+          <?php }  ?>
 
-        <?php if(isset($erro_login)){?>
+        <?php if(isset($login->erro["erro_geral"])){?>
         <div class="erro-geral animate__animated animate__bounce">
-            <?php echo $erro_login;?>
+            <?php echo $login->erro["erro_geral"]?>
         </div>
-        <?php }?>
+            <?php }?>
 
         <div class="input-group">
             <img class="input-icon" src="Img/social-media.png">
